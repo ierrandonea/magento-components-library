@@ -30,20 +30,20 @@
     </header>
     <div class="container-fluid" style="position: relative;">
         <!-- components -->
-        <div class="row">
+        <div class="row mt-5">
             <div class="col">
                 <h3>Carruseles Responsivos:</h3>
             </div>
 
             <!-- 2 slides carrusel -->
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col">
                     <h5>Carrusel 2 Slides</h5>
                 </div>
             </div>
             <div class="row">
-                <div class="col" id="car2slides">
-                    <object data="carrusel2slides.html" style="width: 100%; height: 540px;"></object>
+                <div class="col" id="car2slides" style="width: 100%; height: 100%; overflow : hidden;">
+                    <object data="carrusel2slides.html" style="width: 100%; height: 450px; overflow : hidden;"></object>
                 </div>
             </div>
 
@@ -55,7 +55,19 @@
             </div>
             <div class="row">
                 <div class="col" id="car3slides">
-                    <object data="carrusel3slides.html" style="width: 100%; height: 400px;"></object>
+                    <object data="carrusel3slides.html" style="width: 100%; height: 360px;"></object>
+                </div>
+            </div>
+
+            <!-- 4 slides carrusel -->
+            <div class="row">
+                <div class="col">
+                    <h5>Carrusel 4 Slides</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" id="car4slides">
+                    <object data="carrusel4slides.html" style="width: 100%; height: 360px;"></object>
                 </div>
             </div>
         </div>
@@ -70,22 +82,32 @@
 
     <!-- content bar -->
     <div class="content-bar content-bar-init bg-light container-fluid pb-5">
-        <div class="row pt-3 text-white bg-dark">
+        <div class="row pt-3 mb-3 text-white bg-dark">
             <div class="col">
                 <h5>Contenido:</h5>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <p><strong>Carruseles:</strong></p>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <ul class="list-goup">
                     <li class="list-group-item">
-                        <ul class="list-group">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <p><strong>Carruseles:</strong></p><i class="fas fa-sort-down content-list-toggler"></i>
+                        </div>
+                        <ul class="list-group toggled-N content-list-item">
+                            <li class="list-group-item">Carrusel 2 slides</li>
+                            <li class="list-group-item">Carrusel 3 slides</li>
+                            <li class="list-group-item">Carrusel 4 slides</li>
+                            <li class="list-group-item">Carrusel Banner 2 slides</li>
+                            <li class="list-group-item">Carrusel Banner 3 slides</li>
+                            <li class="list-group-item">Carrusel Banner 4 slides</li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <p><strong>Alertas:</strong></p><i class="fas fa-sort-down content-list-toggler"></i>
+                        </div>
+                        <ul class="list-group toggled-N content-list-item">
                             <li class="list-group-item">Carrusel 2 slides</li>
                             <li class="list-group-item">Carrusel 3 slides</li>
                             <li class="list-group-item">Carrusel 4 slides</li>
@@ -101,6 +123,8 @@
     <script>
         let contentBar = document.querySelector('.content-bar')
         let contentBtn = document.querySelector('#content-toggle')
+        let togglerBtns = document.getElementsByClassName('content-list-toggler')
+        let contentListItems = document.getElementsByClassName('content-list-item')
         let togglerSwitch = null;
         contentBtn.addEventListener('click', () => {
             if (togglerSwitch == null) {
@@ -117,6 +141,20 @@
                 togglerSwitch = true;
             }
         })
+        for (let contentListIndex = 0; contentListIndex < togglerBtns.length; contentListIndex++) {
+            togglerBtns[contentListIndex].addEventListener('click', e => {
+                if (contentListItems[contentListIndex].classList.contains('toggled-N')) {
+                contentListItems[contentListIndex].classList.remove('toggled-N')
+                contentListItems[contentListIndex].classList.add('toggled')
+                } else if (contentListItems[contentListIndex].classList.contains('toggled')) {
+                contentListItems[contentListIndex].classList.remove('toggled')
+                contentListItems[contentListIndex].classList.add('untoggled')
+                } else if (contentListItems[contentListIndex].classList.contains('untoggled')) {
+                contentListItems[contentListIndex].classList.remove('untoggled')
+                contentListItems[contentListIndex].classList.add('toggled')
+                }
+            })
+        }
     </script>
 </body>
 

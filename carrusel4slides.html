@@ -21,27 +21,51 @@
     <div style="position: relative;">
         <div class="container-fluid overflow-hidden w-100">
             <div class="row carousel-container card-group d-flex flex-nowrap flex-row">
-                <div class="col-12 col-lg-6 px-0">
+                <div class="col-12 col-md-6 col-lg-3 px-0">
+                    <div class="card carousel-slide rounded-0 border-0 p-3">
+                        <img src="https://via.placeholder.com/640x480?text=640x480+Slide+3" alt=""
+                            class="card-img img-fluid rounded-0 border-0 ">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 px-0">
                     <div class="card carousel-slide rounded-0 border-0 p-3" id="lastClone">
-                        <img src="https://picsum.photos/id/350/960/540" alt=""
+                        <img src="https://via.placeholder.com/640x480?text=640x480+Slide+4" alt=""
                             class="card-img img-fluid rounded-0 border-0 ">
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 px-0">
+                <div class="col-12 col-md-6 col-lg-3 px-0">
                     <div class="card carousel-slide rounded-0 border-0 p-3">
-                        <img src="https://picsum.photos/id/466/960/540" alt=""
+                        <img src="https://via.placeholder.com/640x480?text=640x480+Slide+1" alt=""
                             class="card-img img-fluid rounded-0 border-0 ">
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 px-0">
+                <div class="col-12 col-md-6 col-lg-3 px-0">
                     <div class="card carousel-slide rounded-0 border-0 p-3">
-                        <img src="https://picsum.photos/id/350/960/540" alt=""
+                        <img src="https://via.placeholder.com/640x480?text=640x480+Slide+2" alt=""
                             class="card-img img-fluid rounded-0 border-0 ">
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 px-0">
+                <div class="col-12 col-md-6 col-lg-3 px-0">
+                    <div class="card carousel-slide rounded-0 border-0 p-3">
+                        <img src="https://via.placeholder.com/640x480?text=640x480+Slide+3" alt=""
+                            class="card-img img-fluid rounded-0 border-0 ">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 px-0">
+                    <div class="card carousel-slide rounded-0 border-0 p-3">
+                        <img src="https://via.placeholder.com/640x480?text=640x480+Slide+4" alt=""
+                            class="card-img img-fluid rounded-0 border-0 ">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 px-0">
                     <div class="card carousel-slide rounded-0 border-0 p-3" id="firstClone">
-                        <img src="https://picsum.photos/id/466/960/540" alt=""
+                        <img src="https://via.placeholder.com/640x480?text=640x480+Slide+1" alt=""
+                            class="card-img img-fluid rounded-0 border-0 ">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 px-0">
+                    <div class="card carousel-slide rounded-0 border-0 p-3">
+                        <img src="https://via.placeholder.com/640x480?text=640x480+Slide+2" alt=""
                             class="card-img img-fluid rounded-0 border-0 ">
                     </div>
                 </div>
@@ -78,7 +102,7 @@
 
         // buttons listeners
         nextBtn.addEventListener('click', () => {
-            if (counter >= carouselImages.length - 1) return;
+            if (counter >= carouselImages.length - 2) return;
             carouselSlide.style.transition = "transform 0.5s ease-in-out";
             counter++;
             carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
@@ -92,21 +116,21 @@
 
         // auto-advance, default at 3 secs.
         setInterval(() => {
-            if (counter >= carouselImages.length - 1) return;
+            if (counter >= carouselImages.length - 2) return;
             carouselSlide.style.transition = "transform 0.5s ease-in-out";
             counter++;
             carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
         }, 3000)
 
         // event listeners for animations & infinite loop
-        carouselSlide.addEventListener('transitionend', () => {
+        carouselSlide.addEventListener('transitionstart', () => {
             if (carouselImages[counter].id === 'lastClone') {
                 carouselSlide.style.transition = "none";
                 counter = carouselImages.length / 2; // must be half of total slides
                 carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
             }
             if (carouselImages[counter].id === 'firstClone') {
-                counter = carouselImages.length - (counter);
+                counter = carouselImages.length - counter;
                 carouselSlide.style.transition = "none";
                 carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
 

@@ -13,7 +13,7 @@
 .content-bar-hidden {
     position: absolute;
     top: 8vh;
-    left: -20%;
+    left: -200%;
     width: 20% !important;
     animation: slideOut_Right ease 1s;
     -webkit-animation: slideOut_Right ease 1s;
@@ -25,8 +25,32 @@
 .content-bar-init {
     position: absolute;
     top: 8vh;
-    left: -20%;
+    left: -200%;
     width: 20% !important;
+}
+
+.toggled {
+    height: auto;
+    animation: deploy_down ease-in-out 5s;
+    -webkit-animation: deploy_down ease-in-out 5s;
+    -moz-animation: deploy_down ease-in-out 5s;
+    -o-animation: deploy_down ease-in-out 5s;
+    -ms-animation: deploy_down ease-in-out 5s;
+}
+
+.untoggled {
+    height: 0;
+    display: none;
+    animation: collapse_up ease-in-out 5s;
+    -webkit-animation: collapse_up ease-in-out 5s;
+    -moz-animation: collapse_up ease-in-out 5s;
+    -o-animation: collapse_up ease-in-out 5s;
+    -ms-animation: collapse_up ease-in-out 5s;
+}
+
+.toggled-N {
+    height: 0;
+    display: none;
 }
 
 @keyframes slideIn_Left {
@@ -44,5 +68,41 @@
     }
     100% {
         left: -20%;
+    }
+}
+
+@keyframes collapse_up {
+    0% {
+        height: 100%;
+    }
+    25%{
+        height: 75%;
+    }
+    50% {
+        height: 50%;
+    }
+    75% {
+        height: 25%;
+    }
+    100% {
+        height: 0%;
+    }
+}
+
+@keyframes deploy_down {
+    0% {
+        height: 0;
+    }
+    25%{
+        height: 25%;
+    }
+    50% {
+        height: 50%;
+    }
+    75% {
+        height: 75%;
+    }
+    100% {
+        height: 100%;
     }
 }
