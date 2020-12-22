@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        #previousSlide,
+        #nextSlide {
+            background: rgba(255, 255, 255, 0.7) !important;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+    <div style="position: relative;">
+        <div class="container-fluid overflow-hidden w-100">
+            <div class="row carousel-container card-group d-flex flex-nowrap flex-row">
+                <div class="col-12 col-md-6 col-lg-4 px-0">
+                    <div class="card carousel-slide rounded-0 border-0 p-3" id="lastClone">
+                        <img src="https://picsum.photos/id/300/600/400" alt=""
+                            class="card-img img-fluid rounded-0 border-0 ">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 px-0">
+                    <div class="card carousel-slide rounded-0 border-0 p-3">
+                        <img src="https://picsum.photos/id/1/600/400" alt=""
+                            class="card-img img-fluid rounded-0 border-0 ">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 px-0">
+                    <div class="card carousel-slide rounded-0 border-0 p-3">
+                        <img src="https://picsum.photos/id/20/600/400" alt=""
+                            class="card-img img-fluid rounded-0 border-0 ">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 px-0">
+                    <div class="card carousel-slide rounded-0 border-0 p-3">
+                        <img src="https://picsum.photos/id/300/600/400" alt=""
+                            class="card-img img-fluid rounded-0 border-0 ">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 px-0">
+                    <div class="card carousel-slide rounded-0 border-0 p-3" id="firstClone">
+                        <img src="https://picsum.photos/id/1/600/400" alt=""
+                            class="card-img img-fluid rounded-0 border-0 ">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 px-0">
+                    <div class="card carousel-slide rounded-0 border-0 p-3">
+                        <img src="https://picsum.photos/id/20/600/400" alt=""
+                            class="card-img img-fluid rounded-0 border-0 ">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+            <div class="d-flex justify-content-between px-2">
+                <div class="btn btn-lg btn-secondary rounded-0 border-0 d-flex align-items-center"
+                    style="width: 50px; height: 50px; color: rgba(0, 0, 0, 0.7);" id="previousSlide">
+                    <span class="fas fa-angle-left fa-2x"></span>
+                </div>
+                <div class="btn btn-lg btn-secondary rounded-0 border-0 d-flex align-items-center"
+                    style="width: 50px; height: 50px; color: rgba(0, 0, 0, 0.7);" id="nextSlide">
+                    <span class="fas fa-angle-right fa-2x"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // capture slides
+        const carouselSlide = document.querySelector('.carousel-container');
+        const carouselImages = document.querySelectorAll('.carousel-slide');
+
+        // buttons
+        const prevBtn = document.querySelector('#previousSlide')
+        const nextBtn = document.querySelector('#nextSlide')
+
+        // counter
+        let counter = 1;
+
+        // slide width to transition
+        const size = carouselImages[0].clientWidth;
+        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+
+        // buttons listeners
+        nextBtn.addEventListener('click', () => {
+            if (counter >= carouselImages.length - 1) return;
+            carouselSlide.style.transition = "transform 0.5s ease-in-out";
+            counter++;
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        })
+        prevBtn.addEventListener('click', () => {
+            if (counter <= 0) return;
+            carouselSlide.style.transition = "transform 0.5s ease-in-out";
+            counter--;
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        })
+
+        // auto-advance, default at 3 secs.
+        setInterval(() => {
+            if (counter >= carouselImages.length - 1) return;
+            carouselSlide.style.transition = "transform 0.5s ease-in-out";
+            counter++;
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        }, 3000)
+
+        // event listeners for animations & infinite loop
+        carouselSlide.addEventListener('transitionend', () => {
+            if (carouselImages[counter].id === 'lastClone') {
+                carouselSlide.style.transition = "none";
+                counter = carouselImages.length / 2; // must be half of total slides
+                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+            }
+            if (carouselImages[counter].id === 'firstClone') {
+                counter = carouselImages.length - (counter + 1);
+                carouselSlide.style.transition = "none";
+                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+
+            }
+        })
+    </script>
+</body>
+
+</html>
